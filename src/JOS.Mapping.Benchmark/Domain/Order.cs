@@ -1,8 +1,13 @@
 ﻿namespace JOS.Mapping.Benchmark.Domain
 {
-    public abstract class Order
+    public abstract class Order<TBillingAddress, TShippingAddress, TCustomer>
     {
-        protected Order(int id, BillingAddress billing, ShippingAddress shipping, Customer customer, OrderDetails orderDetails)
+        protected Order(
+            int id,
+            TBillingAddress billing,
+            TShippingAddress shipping,
+            TCustomer customer,
+            OrderDetails orderDetails)
         {
             Id = id;
             Billing = billing;
@@ -13,26 +18,13 @@
 
         public int Id { get; }
         public abstract string Type { get; }
-        public BillingAddress Billing { get; }
-        public ShippingAddress Shipping { get; }
-        public Customer Customer { get; }
+        public TBillingAddress Billing { get; }
+        public TShippingAddress Shipping { get; }
+        public TCustomer Customer { get; }
         public OrderDetails OrderDetails { get; }
     }
 
-    public class ConsumerOrder : Order
-    {
-        public ConsumerOrder(int id, ConsumerBillingAddress billing, ConsumerShippingAddress shipping, ConsumerCustomer customer, OrderDetails orderDetails) : base(id, billing, shipping, customer, orderDetails)
-        {
-            
-        }
-
-        public override string Type => "CONSUMER";
-        public new ConsumerBillingAddress Billing => (ConsumerBillingAddress) base.Billing;
-        public new ConsumerShippingAddress Shipping => (ConsumerShippingAddress) base.Shipping;
-        public new ConsumerCustomer Customer => (ConsumerCustomer) base.Customer;
-    }
-
-    public class BusinessOrder : Order
+    public class BusinessOrder : Order<BusinessBillingAddress, BusinessShippingAddress, BusinessCustomer>
     {
         public BusinessOrder(
             int id,
@@ -50,9 +42,5 @@
         }
 
         public override string Type => "BUSINESS";
-
-        public new BusinessBillingAddress Billing => (BusinessBillingAddress)base.Billing;
-        public new BusinessShippingAddress Shipping => (BusinessShippingAddress)base.Shipping;
-        public new BusinessCustomer Customer => (BusinessCustomer)base.Customer;
     }
 }

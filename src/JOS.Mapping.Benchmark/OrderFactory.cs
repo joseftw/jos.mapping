@@ -5,35 +5,6 @@ namespace JOS.Mapping.Benchmark
 {
     public static class OrderFactory
     {
-        public static ConsumerOrder CreateConsumerOrder()
-        {
-            var billingAddress = new ConsumerBillingAddress(
-                new ConsumerReceiver("Josef", "Ottosson"),
-                null,
-                "Kungssätravägen 18",
-                "12737",
-                "Skärholmen",
-                "Sverige");
-
-            var consumerOrder = new ConsumerOrder(
-                1000,
-                billingAddress,
-                new ConsumerShippingAddress(
-                    billingAddress.Receiver,
-                    billingAddress.CareOf,
-                    billingAddress.Street,
-                    billingAddress.Zip,
-                    billingAddress.City,
-                    billingAddress.Country),
-                new ConsumerCustomer("1111", "199001233890"),
-                new OrderDetails(new List<OrderRow>
-                {
-                    new OrderRow("Apple iPad Pro 11", "APLIPPRO11", 1, 10000m, 25)
-                }));
-
-            return consumerOrder;
-        }
-
         public static BusinessOrder CreateBusinessOrder()
         {
             var billingAddress = new BusinessBillingAddress(
