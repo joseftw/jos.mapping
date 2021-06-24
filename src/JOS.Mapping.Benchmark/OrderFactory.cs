@@ -10,15 +10,15 @@ namespace JOS.Mapping.Benchmark
             var billingAddress = new BusinessBillingAddress(
                 new BusinessReceiver("JEHO Consulting AB", "Josef Ottosson"),
                 "Josef Ottosson",
-                "Kungssätravägen 18",
-                "12737",
-                "Skärholmen",
+                "Vägen 123",
+                "12345",
+                "Stockholm",
                 "Sverige");
             var shippingAddress = new BusinessShippingAddress(
                 new BusinessReceiver("JEHO Consulting AB", "Josef Ottosson"),
-                "Qliro AB",
-                "Sveavägen 151",
-                "11346",
+                "Company B",
+                "Sveavägen 123",
+                "12345",
                 "Stockholm",
                 "Sverige");
 
